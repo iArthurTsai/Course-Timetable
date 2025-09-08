@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>113 學年度第 2 學期課表</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600&display=swap" rel="stylesheet" />
+    <style>
+      body {
+        font-family: "Noto Sans TC", system-ui, sans-serif;
+        background: black;
+        color: white;
+        padding: 1rem;
+      }
+      .page-title {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+        color: white;
+      }
+      .course {
+        border-radius: 0.5rem;
+        padding: 0.5rem;
+        font-size: 1rem;
+        color: black;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 0px;
+        grid-row: span var(--span, 1);
+        transition: transform 0.15s ease, opacity 0.2s;
+      }
+      .course:hover {
+        transform: scale(1.05);
+      }
+      /* 預設風格 style-1：字同大小，三行，左對齊 */
+      .course.style-1 {
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .course.style-1 .course-title,
+      .course.style-1 .course-teacher,
+      .course.style-1 .course-room,
+      .course.style-2 .course-title,
+      .course.style-2 .course-teacher,
+      .course.style-2 .course-room {
+        font-size: 1rem;
+      }
+      .course.style-1 .course-title,
+      .course.style-2 .course-title {
+        font-weight: bold;
+      }
+      .course.style-1 .course-teacher-room,
+      .course.style-2 .course-teacher-room {
+        display: none;
+      }
+
+      /* style-2：字同大小，三行，置中 */
+      .course.style-2 {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* style-3：課程名稱大，教師與教室同行，置中 */
+      .course.style-3 {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .course.style-3 .course-title {
+        font-size: 1rem; /* 課程名稱較大 */
+        font-weight: bold;
+      }
+      .course.style-3 .course-teacher,
+      .course.style-3 .course-room {
+        display: none;
+      }
+      .course.style-3 .course-teacher-room {
+        font-size: 1rem;
+      }
+
+      .time-col {
+        width: 70px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; /* 垂直靠上 */
+        align-items: center;
+        padding-right: 0.5rem;
+      }
+      .grid-container {
+        display: grid;
+        grid-template-columns: 70px repeat(5, 1fr);
+        grid-template-rows: 40px; /* 先定義第一列(標題) */
+        grid-auto-rows: minmax(70px, 1fr);
+        border: 1px solid white;
+      }
+      /* style-3 時比較精簡，所以縮短 */
+      .grid-container.style-3 {
+        grid-auto-rows: minmax(55px, 1fr);
+      }
+      .header {
+        font-weight: 600;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0.5rem 0;
+      }
+      .hidden-course {
+        visibility: hidden;
+        opacity: 0;
+        pointer-events: none;
+      }
+      .filters-bar {
+        max-width: 1100px;
+        margin: 14px auto;
+        text-align: center;
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+      }
+      .filters-bar select,
+      .filters-bar button {
+        background: navy;
+        color: white;
+        border: 1px solid white;
+        padding: 8px 10px;
+        border-radius: 8px;
+      }
+      .filters-bar label {
+        color: white;
+        font-weight: 600;
+        margin-right: 6px;
+      }
+      /* Modal */
+      #modal {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+      }
+      #modal.show {
+        display: flex;
+        opacity: 1;
+        pointer-events: auto;
+        display: flex;
+      }
+      #modal .box {
+        background: white;
+        color: black;
+        border-radius: 0.5rem;
+        padding: 1rem;
+        width: 20rem;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      }
+      #modal button {
+        background: red;
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 0.25rem;
+        border: none;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="page-title text-2xl font-bold text-center">113 學年度第 2 學期課表</h1>
+
+    <!-- Filter Section -->
+    <div class="filters-bar">
+      <button id="toggle-style">切換課程顯示風格</button>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <label for="filter-day">依星期篩選</label>
+        <select id="filter-day">
+          <option value="">全部</option>
+          <option value="1">一</option>
+          <option value="2">二</option>
+          <option value="3">三</option>
+          <option value="4">四</option>
+          <option value="5">五</option>
+        </select>
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <label for="filter-teacher">依教師篩選</label>
+        <select id="filter-teacher">
+          <option value="">全部</option>
+        </select>
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <label for="filter-room">依教室篩選</label>
+        <select id="filter-room">
+          <option value="">全部</option>
+        </select>
+      </div>
+      <button id="reset-filters">重設篩選</button>
+      <span id="match-count" style="color: white; font-weight: 600;">全部顯示</span>
+    </div>
+
+    <!-- Timetable -->
+    <div class="grid-container" id="timetable">
+      <div></div>
+      <div class="header">一</div>
+      <div class="header">二</div>
+      <div class="header">三</div>
+      <div class="header">四</div>
+      <div class="header">五</div>
+
+      <!-- Example row -->
+      <div class="time-col">08:10</div>
+      <div></div>
+      <div class="course style-1" data-day="2" data-title="實用英文(四)" data-teacher="陳立民" data-room="旗U203教室" data-span="2" data-index="5">
+        <div class="course-title">實用英文(四)</div>
+        <div class="course-teacher">陳立民</div>
+        <div class="course-room">旗U203教室</div>
+        <div class="course-teacher-room">陳立民・旗U203教室</div>
+      </div>
+      <div></div>
+      <div class="course style-1" data-day="4" data-title="應用文" data-teacher="蘇淑貞" data-room="旗U104教室" data-span="2" data-index="4">
+        <div class="course-title">應用文</div>
+        <div class="course-teacher">蘇淑貞</div>
+        <div class="course-room">旗U104教室</div>
+        <div class="course-teacher-room">蘇淑貞・旗U104教室</div>
+      </div>
+      <div class="course style-1" data-day="5" data-title="港埠管理" data-teacher="陳正忠" data-room="旗U604教室" data-span="2" data-index="10">
+        <div class="course-title">港埠管理</div>
+        <div class="course-teacher">陳正忠</div>
+        <div class="course-room">旗U604教室</div>
+        <div class="course-teacher-room">陳正忠・旗U604教室</div>
+      </div>
+
+      <div class="time-col">09:10</div>
+      <div class="course style-1" data-day="1" data-title="作業系統" data-teacher="張珀銀" data-room="旗306海資電腦教室" data-span="3" data-index="6">
+        <div class="course-title">作業系統</div>
+        <div class="course-teacher">張珀銀</div>
+        <div class="course-room">旗306海資電腦教室</div>
+        <div class="course-teacher-room">張珀銀・旗306海資電腦教室</div>
+      </div>
+      <div class="course style-1" data-day="3" data-title="物件導向程式設計(二)" data-teacher="蒲鈺琪" data-room="1204海資多功能教室" data-span="3" data-index="12">
+        <div class="course-title">物件導向程式設計(二)</div>
+        <div class="course-teacher">蒲鈺琪</div>
+        <div class="course-room">1204海資多功能教室</div>
+        <div class="course-teacher-room">蒲鈺琪・1204海資多功能教室</div>
+      </div>
+
+      <div class="time-col">10:10</div>
+      <div class="course style-1" data-day="2" data-title="體育(四)-桌球" data-teacher="林淑君" data-room="" data-span="2" data-index="3">
+        <div class="course-title">體育(四)-桌球</div>
+        <div class="course-teacher">林淑君</div>
+        <div class="course-teacher-room">林淑君</div>
+      </div>
+      <div class="course style-1" data-day="4" data-title="國際禮儀" data-teacher="陳和廷" data-room="旗U408階梯教室" data-span="2" data-index="13">
+        <div class="course-title">國際禮儀</div>
+        <div class="course-teacher">陳和廷</div>
+        <div class="course-room">旗U408階梯教室</div>
+        <div class="course-teacher-room">陳和廷・旗U408階梯教室</div>
+      </div>
+      <div class="course style-1" data-day="5" data-title="海運學" data-teacher="邵仁中" data-room="旗U604教室" data-span="2" data-index="11">
+        <div class="course-title">海運學</div>
+        <div class="course-teacher">邵仁中</div>
+        <div class="course-room">旗U604教室</div>
+        <div class="course-teacher-room">邵仁中・旗U604教室</div>
+      </div>
+
+      <div class="time-col">11:10</div>
+
+      <div class="time-col">12:10</div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+
+      <div class="time-col">13:30</div>
+      <div class="course style-1" data-day="1" data-title="電腦輔助製圖" data-teacher="李曉慧" data-room="旗306海資電腦教室" data-span="3" data-index="9">
+        <div class="course-title">電腦輔助製圖</div>
+        <div class="course-teacher">李曉慧</div>
+        <div class="course-room">旗306海資電腦教室</div>
+        <div class="course-teacher-room">李曉慧・旗306海資電腦教室</div>
+      </div>
+      <div class="course style-1" data-day="2" data-title="電腦軟體應用(二)" data-teacher="謝志敏" data-room="1204海資多功能教室" data-span="3" data-index="8">
+        <div class="course-title">電腦軟體應用(二)</div>
+        <div class="course-teacher">謝志敏</div>
+        <div class="course-room">1204海資多功能教室</div>
+        <div class="course-teacher-room">謝志敏・1204海資多功能教室</div>
+      </div>
+      <div></div>
+      <div class="course style-1" data-day="4" data-title="博雅(全球)日本文化與台日關係" data-teacher="林亭吟" data-room="旗U202教室" data-span="2" data-index="2">
+        <div class="course-title">博雅(全球)日本文化與台日關係</div>
+        <div class="course-teacher">林亭吟</div>
+        <div class="course-room">旗U202教室</div>
+        <div class="course-teacher-room">林亭吟・旗U202教室</div>
+      </div>
+      <div></div>
+
+      <div class="time-col">14:30</div>
+      <div></div>
+      <div></div>
+
+      <div class="time-col">15:30</div>
+      <div class="course style-1" data-day="3" data-title="視窗程式設計" data-teacher="羅德章" data-room="1204海資多功能教室" data-span="3" data-index="7">
+        <div class="course-title">視窗程式設計</div>
+        <div class="course-teacher">羅德章</div>
+        <div class="course-room">1204海資多功能教室</div>
+        <div class="course-teacher-room">羅德章・1204海資多功能教室</div>
+      </div>
+      <div class="course style-1" data-day="4" data-title="博雅(科技)資訊素養與倫理" data-teacher="蕭小軍" data-room="旗U603教室" data-span="2" data-index="1">
+        <div class="course-title">資訊素養與倫理</div>
+        <div class="course-teacher">蕭小軍</div>
+        <div class="course-room">旗U603教室</div>
+        <div class="course-teacher-room">蕭小軍・旗U603教室</div>
+      </div>
+      <div class="course style-1" data-day="5" data-title="校訂(六)創意與創新" data-teacher="鄭弘琦" data-room="育302" data-span="2" data-index="0">
+        <div class="course-title">創意與創新</div>
+        <div class="course-teacher">鄭弘琦</div>
+        <div class="course-room">育302</div>
+        <div class="course-teacher-room">鄭弘琦・育302</div>
+      </div>
+
+      <div class="time-col">16:30</div>
+      <div></div>
+      <div></div>
+
+      <div class="time-col">17:30</div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal">
+      <div class="box">
+        <h2 id="modal-title" class="text-lg font-bold mb-2"></h2>
+        <p><span class="font-semibold">教師：</span><span id="modal-teacher"></span></p>
+        <p><span class="font-semibold">教室：</span><span id="modal-room"></span></p>
+        <div style="text-align: right; margin-top: 1rem;">
+          <button onclick="closeModal()">關閉</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const courses = document.querySelectorAll(".course");
+        const modal = document.getElementById("modal");
+        const modalTitle = document.getElementById("modal-title");
+        const modalTeacher = document.getElementById("modal-teacher");
+        const modalRoom = document.getElementById("modal-room");
+
+        const dayFilter = document.getElementById("filter-day");
+        const teacherFilter = document.getElementById("filter-teacher");
+        const roomFilter = document.getElementById("filter-room");
+        const resetBtn = document.getElementById("reset-filters");
+        const matchCount = document.getElementById("match-count");
+        const toggleBtn = document.getElementById("toggle-style");
+
+        // Modal logic
+        function openModal(course) {
+          modalTitle.textContent = course.dataset.title;
+          modalTeacher.textContent = course.dataset.teacher || "未提供";
+          modalRoom.textContent = course.dataset.room || "未提供";
+          modal.classList.add("show");
+        }
+        courses.forEach((course) => {
+          course.addEventListener("click", () => {
+            if (course.classList.contains("hidden-course")) return;
+            openModal(course);
+
+            /* modalTitle.textContent = course.dataset.title;
+          modalTeacher.textContent = course.dataset.teacher || "未提供";
+          modalRoom.textContent = course.dataset.room || "未提供";
+          modal.classList.add("show");*/
+          });
+        });
+        function closeModal() {
+          modal.classList.remove("show");
+        }
+        window.closeModal = closeModal;
+        modal.addEventListener("click", (e) => {
+          if (e.target === modal) closeModal();
+        });
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") closeModal();
+        });
+
+        // Populate filter dropdowns
+        const teacherSet = new Set(),
+          roomSet = new Set();
+        courses.forEach((c) => {
+          if (c.dataset.teacher) teacherSet.add(c.dataset.teacher);
+          if (c.dataset.room) roomSet.add(c.dataset.room);
+        });
+        teacherSet.forEach((t) => {
+          const opt = document.createElement("option");
+          opt.value = t;
+          opt.textContent = t;
+          teacherFilter.appendChild(opt);
+        });
+        roomSet.forEach((r) => {
+          const opt = document.createElement("option");
+          opt.value = r;
+          opt.textContent = r;
+          roomFilter.appendChild(opt);
+        });
+
+        // Filter logic
+        function applyFilters() {
+          const d = dayFilter.value,
+            t = teacherFilter.value,
+            r = roomFilter.value;
+          let shown = 0;
+          courses.forEach((c) => {
+            let ok = true;
+            if (d && c.dataset.day !== d) ok = false;
+            if (t && c.dataset.teacher !== t) ok = false;
+            if (r && c.dataset.room !== r) ok = false;
+            if (ok) {
+              c.classList.remove("hidden-course");
+              shown++;
+            } else {
+              c.classList.add("hidden-course");
+            }
+          });
+          matchCount.textContent = !d && !t && !r ? "全部顯示" : `找到 ${shown} 門課程`;
+        }
+
+        [dayFilter, teacherFilter, roomFilter].forEach((s) => s.addEventListener("change", applyFilters));
+        resetBtn.addEventListener("click", () => {
+          dayFilter.value = teacherFilter.value = roomFilter.value = "";
+          applyFilters();
+        });
+
+        // 初始化顯示
+        applyFilters();
+
+        // Style toggle
+        const styles = ["style-1", "style-2", "style-3"];
+        let current = 0;
+
+        toggleBtn.addEventListener("click", () => {
+          current = (current + 1) % styles.length; // 循環 0→1→2→0
+          const newStyle = styles[current];
+
+          // 切換課程卡片的 style
+          courses.forEach((course) => {
+            course.classList.remove("style-1", "style-2", "style-3");
+            course.classList.add(newStyle);
+          });
+
+          // 切換 grid-container 的 class，讓高度跟著變
+          const grid = document.querySelector(".grid-container");
+          grid.classList.toggle("style-3", newStyle === "style-3");
+        });
+      });
+
+      // 處理 data-span，讓課程自動跨多行
+      document.querySelectorAll(".course").forEach((course) => {
+        const span = course.dataset.span || 1; // course.dataset.span;
+        course.style.setProperty("--span", span);
+        /* if (span) {
+          course.style.gridRow = `span ${span}`;
+        } */
+      });
+
+      // 先建立 Material 色系對照表
+      const materialColors = {
+        red: {
+          300: "#e57373",
+          400: "#ef5350",
+          500: "#f44336",
+          600: "#e53935",
+          700: "#d32f2f",
+          800: "#c62828",
+          900: "#b71c1c",
+        },
+        pink: {
+          300: "#f06292",
+          400: "#ec407a",
+          500: "#e91e63",
+          600: "#d81b60",
+          700: "#c2185b",
+          800: "#ad1457",
+          900: "#880e4f",
+        },
+        purple: {
+          300: "#ba68c8",
+          400: "#ab47bc",
+          500: "#9c27b0",
+          600: "#8e24aa",
+          700: "#7b1fa2",
+          800: "#6a1b9a",
+          900: "#4a148c",
+        },
+        deepPurple: {
+          300: "#9575cd",
+          400: "#7e57c2",
+          500: "#673ab7",
+          600: "#5e35b1",
+          700: "#512da8",
+          800: "#4527a0",
+          900: "#311b92",
+        },
+        indigo: {
+          300: "#7986cb",
+          400: "#5c6bc0",
+          500: "#3f51b5",
+          600: "#3949ab",
+          700: "#303f9f",
+          800: "#283593",
+          900: "#1a237e",
+        },
+        blue: {
+          300: "#64b5f6",
+          400: "#42a5f5",
+          500: "#2196f3",
+          600: "#1e88e5",
+          700: "#1976d2",
+          800: "#1565c0",
+          900: "#0d47a1",
+        },
+        lightBlue: {
+          300: "#4fc3f7",
+          400: "#29b6f6",
+          500: "#03a9f4",
+          600: "#039be5",
+          700: "#0288d1",
+          800: "#0277bd",
+          900: "#01579b",
+        },
+        cyan: {
+          300: "#4dd0e1",
+          400: "#26c6da",
+          500: "#00bcd4",
+          600: "#00acc1",
+          700: "#0097a7",
+          800: "#00838f",
+          900: "#006064",
+        },
+        teal: {
+          300: "#4db6ac",
+          400: "#26a69a",
+          500: "#009688",
+          600: "#00897b",
+          700: "#00796b",
+          800: "#00695c",
+          900: "#004d40",
+        },
+        green: {
+          300: "#81c784",
+          400: "#66bb6a",
+          500: "#4caf50",
+          600: "#43a047",
+          700: "#388e3c",
+          800: "#2e7d32",
+          900: "#1b5e20",
+        },
+        lightGreen: {
+          300: "#aed581",
+          400: "#9ccc65",
+          500: "#8bc34a",
+          600: "#7cb342",
+          700: "#689f38",
+          800: "#558b2f",
+          900: "#33691e",
+        },
+        lime: {
+          300: "#dce775",
+          400: "#d4e157",
+          500: "#cddc39",
+          600: "#c0ca33",
+          700: "#afb42b",
+          800: "#9e9d24",
+          900: "#827717",
+        },
+        yellow: {
+          300: "#fff176",
+          400: "#ffee58",
+          500: "#ffeb3b",
+          600: "#fdd835",
+          700: "#fbc02d",
+          800: "#f9a825",
+          900: "#f57f17",
+        },
+        amber: {
+          300: "#ffd54f",
+          400: "#ffca28",
+          500: "#ffc107",
+          600: "#ffb300",
+          700: "#ffa000",
+          800: "#ff8f00",
+          900: "#ff6f00",
+        },
+        orange: {
+          300: "#ffb74d",
+          400: "#ffa726",
+          500: "#ff9800",
+          600: "#fb8c00",
+          700: "#f57c00",
+          800: "#ef6c00",
+          900: "#e65100",
+        },
+        deepOrange: {
+          300: "#ff8a65",
+          400: "#ff7043",
+          500: "#ff5722",
+          600: "#f4511e",
+          700: "#e64a19",
+          800: "#d84315",
+          900: "#bf360c",
+        },
+        brown: {
+          300: "#a1887f",
+          400: "#8d6e63",
+          500: "#795548",
+          600: "#6d4c41",
+          700: "#5d4037",
+          800: "#4e342e",
+          900: "#3e2723",
+        },
+        blueGrey: {
+          300: "#90a4ae",
+          400: "#78909c",
+          500: "#607d8b",
+          600: "#546e7a",
+          700: "#455a64",
+          800: "#37474f",
+          900: "#263238",
+        },
+        // ... 其他色系可照 Material Design 色票加上去
+      };
+
+      const colorKeys = Object.keys(materialColors);
+      const shades = [300, 400, 500, 600, 700, 800, 900];
+
+      function getCourseColorInfo(i) {
+        const colorFamily = colorKeys[i % colorKeys.length]; // 輪色系
+        const shade = shades[Math.floor(i / colorKeys.length) % shades.length]; // 輪深淺
+        //return materialColors[colorFamily][shade];
+
+        const hex = materialColors[colorFamily][shade];
+
+        return { family: colorFamily, shade, hex };
+      }
+
+      // 排序規則優先級：data-index > data-course-id > 原始順序 i
+
+      function parseCourseId(courseId) {
+        if (!courseId) return null;
+
+        // 判斷是純數字還是字母+數字
+        if (/^\d+$/.test(courseId)) {
+          return { type: "number", value: parseInt(courseId, 10) };
+        } else if (/^[A-Za-z]+\d+$/.test(courseId)) {
+          const match = courseId.match(/^([A-Za-z]+)(\d+)$/);
+          return {
+            type: "alphanum",
+            prefix: match[1],
+            number: parseInt(match[2], 10),
+          };
+        }
+        return { type: "raw", value: courseId }; // fallback: 原字串
+      }
+
+      function compareCourseId(a, b) {
+        if (!a) return 1;
+        if (!b) return -1;
+
+        if (a.type === "number" && b.type === "number") {
+          return a.value - b.value;
+        } else if (a.type === "alphanum" && b.type === "alphanum") {
+          if (a.prefix === b.prefix) {
+            return a.number - b.number;
+          }
+          return a.prefix.localeCompare(b.prefix);
+        } else {
+          return String(a.value).localeCompare(String(b.value));
+        }
+      }
+
+      // 取得所有課程
+      const courses = Array.from(document.querySelectorAll(".grid-container .course"));
+
+      // 幫每個課程建立排序用的 key
+      const withKeys = courses.map((course, i) => {
+        const idx = parseInt(course.dataset.index);
+        const hasIndex = !isNaN(idx);
+
+        const courseId = course.dataset.courseId || null;
+        const parsedCourseId = parseCourseId(courseId);
+
+        return {
+          element: course,
+          sortKey: {
+            hasIndex,
+            index: hasIndex ? idx : null,
+            courseId: parsedCourseId,
+            fallback: i,
+          },
+        };
+      });
+
+      // 排序
+      withKeys.sort((a, b) => {
+        // 先看 data-index
+        if (a.sortKey.hasIndex && b.sortKey.hasIndex) {
+          return a.sortKey.index - b.sortKey.index;
+        }
+        if (a.sortKey.hasIndex) return -1;
+        if (b.sortKey.hasIndex) return 1;
+
+        // 再看 courseId
+        const cmpCourseId = compareCourseId(a.sortKey.courseId, b.sortKey.courseId);
+        if (cmpCourseId !== 0) return cmpCourseId;
+
+        // 最後 fallback 原順序
+        return a.sortKey.fallback - b.sortKey.fallback;
+      });
+
+      // 最後根據排序好的 withKeys 重新上色
+      withKeys.forEach(({ element }, i) => {
+        const colorInfo = getCourseColorInfo(i);
+        element.style.backgroundColor = colorInfo.hex;
+        element.title = `index ${i} — ${colorInfo.family}[${colorInfo.shade}]: ${colorInfo.hex}`;
+      });
+    </script>
+  </body>
+</html>
