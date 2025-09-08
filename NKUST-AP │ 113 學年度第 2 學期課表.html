@@ -93,17 +93,16 @@
       }
 
       .time-col {
-        width: 70px;
+        width: 45px;
         text-align: center;
         display: flex;
         flex-direction: column;
         justify-content: flex-start; /* 垂直靠上 */
         align-items: center;
-        padding-right: 0.5rem;
       }
       .grid-container {
         display: grid;
-        grid-template-columns: 70px repeat(5, 1fr);
+        grid-template-columns: auto repeat(5, 1fr);
         grid-template-rows: 40px; /* 先定義第一列(標題) */
         grid-auto-rows: minmax(70px, 1fr);
         border: 1px solid white;
@@ -747,4 +746,5 @@
     </script>
   </body>
 </html>
+
 
