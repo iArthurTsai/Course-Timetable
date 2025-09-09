@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<!-- saved from url=(0070)https://aais5.nkust.edu.tw/selcrs_std/StdSelecrs/GetStdPreSelectResult -->
+<html style="height: auto;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<base href="/selcrs_std/">--><base href=".">
+    
+        <!-- Theme style -->
+        <link rel="stylesheet" href="./NKUST 選課系統 │ 學期選課結果清單 Result of course selection_files/simple-line-icons.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css">
+        <link rel="stylesheet" href="./NKUST 選課系統 │ 學期選課結果清單 Result of course selection_files/jquery-ui.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.3/themes/base/jquery-ui.min.css">
+        <link rel="stylesheet" href="./NKUST 選課系統 │ 學期選課結果清單 Result of course selection_files/theme.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.3/themes/base/theme.min.css">
+        <link rel="stylesheet" href="./NKUST 選課系統 │ 學期選課結果清單 Result of course selection_files/adminlte.min.css">
+        <link rel="stylesheet" href="./NKUST 選課系統 │ 學期選課結果清單 Result of course selection_files/bootstrap.min.css">
+        <link rel="stylesheet" href="./NKUST 選課系統 │ 學期選課結果清單 Result of course selection_files/perfect-scrollbar.min.css">
+        <link rel="stylesheet" href="./NKUST 選課系統 │ 學期選課結果清單 Result of course selection_files/hint.min.css">
+        <!-- Dialog -->
+        <link rel="stylesheet" href="./NKUST 選課系統 │ 學期選課結果清單 Result of course selection_files/sweetalert2.min.css">
+        <link rel="stylesheet" href="./NKUST 選課系統 │ 學期選課結果清單 Result of course selection_files/toastr.min.css">
+        <!-- Font Awesome Icons -->
+        <link rel="stylesheet" href="./NKUST 選課系統 │ 學期選課結果清單 Result of course selection_files/all.min.css">
+        <!-- Custom -->
+        <link href="./NKUST 選課系統 │ 學期選課結果清單 Result of course selection_files/site.css" rel="stylesheet">
+    
+    <title>NKUST 選課系統 │ 學期選課結果清單 Result of course selection </title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    
+    <!-- DataTables -->
+    <link rel="stylesheet" href="./NKUST 選課系統 │ 學期選課結果清單 Result of course selection_files/dataTables.bootstrap4.css">
+<link rel="stylesheet" href="./NKUST 選課系統 │ 學期選課結果清單 Result of course selection_files/select.bootstrap4.min.css">
+<link rel="stylesheet" href="./NKUST 選課系統 │ 學期選課結果清單 Result of course selection_files/responsive.bootstrap4.min.css">
+<link rel="stylesheet" href="./NKUST 選課系統 │ 學期選課結果清單 Result of course selection_files/buttons.bootstrap4.min.css">
+<link rel="stylesheet" href="./NKUST 選課系統 │ 學期選課結果清單 Result of course selection_files/keyTable.bootstrap4.min.css">
+
+    <!--  tab -->
+    <style>
+        .myEllipsis {
+            width: 120px;
+            max-width: 150px;
+            min-width: 120px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        #exTab .nav-tabs > li > a {
+            border-radius: 10px 10px 0 0;
+        }
+    </style>
+
+<style data-id="immersive-translate-input-injected-css">.immersive-translate-input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 2147483647;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.immersive-translate-attach-loading::after {
+  content: " ";
+
+  --loading-color: #f78fb6;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: block;
+  margin: 12px auto;
+  position: relative;
+  color: white;
+  left: -100px;
+  box-sizing: border-box;
+  animation: immersiveTranslateShadowRolling 1.5s linear infinite;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-2000%, -50%);
+  z-index: 100;
+}
+
+.immersive-translate-loading-spinner {
+  vertical-align: middle !important;
+  width: 10px !important;
+  height: 10px !important;
+  display: inline-block !important;
+  margin: 0 4px !important;
+  border: 2px rgba(221, 244, 255, 0.6) solid !important;
+  border-top: 2px rgba(0, 0, 0, 0.375) solid !important;
+  border-left: 2px rgba(0, 0, 0, 0.375) solid !important;
+  border-radius: 50% !important;
+  padding: 0 !important;
+  -webkit-animation: immersive-translate-loading-animation 0.6s infinite linear !important;
+  animation: immersive-translate-loading-animation 0.6s infinite linear !important;
+}
+
+@-webkit-keyframes immersive-translate-loading-animation {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+
+  to {
+    -webkit-transform: rotate(359deg);
+  }
+}
+
+@keyframes immersive-translate-loading-animation {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+.immersive-translate-input-loading {
+  --loading-color: #f78fb6;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: block;
+  margin: 12px auto;
+  position: relative;
+  color: white;
+  left: -100px;
+  box-sizing: border-box;
+  animation: immersiveTranslateShadowRolling 1.5s linear infinite;
+}
+
+@keyframes immersiveTranslateShadowRolling {
+  0% {
+    box-shadow: 0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0),
+      0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0);
+  }
+
+  12% {
+    box-shadow: 100px 0 var(--loading-color), 0px 0 rgba(255, 255, 255, 0),
+      0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0);
+  }
+
+  25% {
+    box-shadow: 110px 0 var(--loading-color), 100px 0 var(--loading-color),
+      0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0);
+  }
+
+  36% {
+    box-shadow: 120px 0 var(--loading-color), 110px 0 var(--loading-color),
+      100px 0 var(--loading-color), 0px 0 rgba(255, 255, 255, 0);
+  }
+
+  50% {
+    box-shadow: 130px 0 var(--loading-color), 120px 0 var(--loading-color),
+      110px 0 var(--loading-color), 100px 0 var(--loading-color);
+  }
+
+  62% {
+    box-shadow: 200px 0 rgba(255, 255, 255, 0), 130px 0 var(--loading-color),
+      120px 0 var(--loading-color), 110px 0 var(--loading-color);
+  }
+
+  75% {
+    box-shadow: 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0),
+      130px 0 var(--loading-color), 120px 0 var(--loading-color);
+  }
+
+  87% {
+    box-shadow: 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0),
+      200px 0 rgba(255, 255, 255, 0), 130px 0 var(--loading-color);
+  }
+
+  100% {
+    box-shadow: 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0),
+      200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0);
+  }
+}
+
+.immersive-translate-toast {
+  display: flex;
+  position: fixed;
+  z-index: 2147483647;
+  left: 0;
+  right: 0;
+  top: 1%;
+  width: fit-content;
+  padding: 12px 20px;
+  margin: auto;
+  overflow: auto;
+  background: #fef6f9;
+  box-shadow: 0px 4px 10px 0px rgba(0, 10, 30, 0.06);
+  font-size: 15px;
+  border-radius: 8px;
+  color: #333;
+}
+
+.immersive-translate-toast-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.immersive-translate-toast-hidden {
+  margin: 0 20px 0 72px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.immersive-translate-toast-close {
+  color: #666666;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 0 10px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .immersive-translate-toast {
+    top: 0;
+    padding: 12px 0px 0 10px;
+  }
+  .immersive-translate-toast-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  .immersive-translate-toast-hidden {
+    margin: 10px auto;
+  }
+}
+
+.immersive-translate-dialog {
+  position: fixed;
+  z-index: 2147483647;
+  left: 0;
+  top: 0;
+  display: flex;
+  width: 300px;
+  flex-direction: column;
+  align-items: center;
+  font-size: 15px;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  height: fit-content;
+  border-radius: 20px;
+  background-color: #fff;
+}
+
+.immersive-translate-modal {
+  display: none;
+  position: fixed;
+  z-index: 2147483647;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  font-size: 15px;
+}
+
+.immersive-translate-modal-content {
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 40px 24px 24px;
+  border-radius: 12px;
+  width: 350px;
+  font-family: system-ui, -apple-system, "Segoe UI", "Roboto", "Ubuntu",
+    "Cantarell", "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
+  position: relative;
+}
+
+@media screen and (max-width: 768px) {
+  .immersive-translate-modal-content {
+    margin: 25% auto !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .immersive-translate-modal-content {
+    width: 80vw !important;
+    margin: 20vh auto !important;
+    padding: 20px 12px 12px !important;
+  }
+
+  .immersive-translate-modal-title {
+    font-size: 14px !important;
+  }
+
+  .immersive-translate-modal-body {
+    font-size: 13px !important;
+    max-height: 60vh !important;
+  }
+
+  .immersive-translate-btn {
+    font-size: 13px !important;
+    padding: 8px 16px !important;
+    margin: 0 4px !important;
+  }
+
+  .immersive-translate-modal-footer {
+    gap: 6px !important;
+    margin-top: 16px !important;
+  }
+}
+
+.immersive-translate-modal .immersive-translate-modal-content-in-input {
+  max-width: 500px;
+}
+.immersive-translate-modal-content-in-input .immersive-translate-modal-body {
+  text-align: left;
+  max-height: unset;
+}
+
+.immersive-translate-modal-title {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: #333333;
+}
+
+.immersive-translate-modal-body {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  color: #333333;
+  margin-top: 24px;
+}
+
+@media screen and (max-width: 768px) {
+  .immersive-translate-modal-body {
+    max-height: 250px;
+    overflow-y: auto;
+  }
+}
+
+.immersive-translate-close {
+  color: #666666;
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.immersive-translate-close:hover,
+.immersive-translate-close:focus {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.immersive-translate-modal-footer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.immersive-translate-btn {
+  width: fit-content;
+  color: #fff;
+  background-color: #ea4c89;
+  border: none;
+  font-size: 14px;
+  margin: 0 8px;
+  padding: 9px 30px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.immersive-translate-btn-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.immersive-translate-btn:hover {
+  background-color: #f082ac;
+}
+.immersive-translate-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.immersive-translate-btn:disabled:hover {
+  background-color: #ea4c89;
+}
+
+.immersive-translate-link-btn {
+  background-color: transparent;
+  color: #ea4c89;
+  border: none;
+  cursor: pointer;
+  height: 30px;
+  line-height: 30px;
+}
+
+.immersive-translate-cancel-btn {
+  /* gray color */
+  background-color: rgb(89, 107, 120);
+}
+
+.immersive-translate-cancel-btn:hover {
+  background-color: hsl(205, 20%, 32%);
+}
+
+.immersive-translate-action-btn {
+  background-color: transparent;
+  color: #ea4c89;
+  border: 1px solid #ea4c89;
+}
+
+.immersive-translate-btn svg {
+  margin-right: 5px;
+}
+
+.immersive-translate-link {
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-drag: none;
+  text-decoration: none;
+  color: #ea4c89;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+}
+
+.immersive-translate-primary-link {
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-drag: none;
+  text-decoration: none;
+  color: #ea4c89;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+}
+
+.immersive-translate-modal input[type="radio"] {
+  margin: 0 6px;
+  cursor: pointer;
+}
+
+.immersive-translate-modal label {
+  cursor: pointer;
+}
+
+.immersive-translate-close-action {
+  position: absolute;
+  top: 2px;
+  right: 0px;
+  cursor: pointer;
+}
+
+.imt-image-status {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 16px !important;
+}
+.imt-image-status img,
+.imt-image-status svg,
+.imt-img-loading {
+  width: 28px !important;
+  height: 28px !important;
+  margin: 0 0 8px 0 !important;
+  min-height: 28px !important;
+  min-width: 28px !important;
+  position: relative !important;
+}
+.imt-img-loading {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAAA4CAMAAACfWMssAAAAtFBMVEUAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////oK74hAAAAPHRSTlMABBMIDyQXHwyBfFdDMSw+OjXCb+5RG51IvV/k0rOqlGRM6KKMhdvNyZBz9MaupmxpWyj437iYd/yJVNZeuUC7AAACt0lEQVRIx53T2XKiUBCA4QYOiyCbiAsuuGBcYtxiYtT3f6/pbqoYHVFO5r+iivpo6DpAWYpqeoFfr9f90DsYAuRSWkFnPO50OgR9PwiCUFcl2GEcx+N/YBh6pvKaefHlUgZd1zVe0NbYcQjGBfzrPE8Xz8aF+71D8gG6DHFPpc4a7xFiCDuhaWgKgGIJQ3d5IMGDrpS4S5KgpIm+en9f6PlAhKby4JwEIxlYJV9h5k5nee9GoxHJ2IDSNB0dwdad1NAxDJ/uXDHYmebdk4PdbkS58CIVHdYSUHTYYRWOJblWSyu2lmy3KNFVJNBhxcuGW4YBVCbYGRZwIooipHsNqjM4FbgOQqQqSKQQU9V8xmi1QlgHqQQ6DDBvRUVCDirs+EzGDGOQTCATgtYTnbCVLgsVgRE0T1QE0qHCFAht2z6dLvJQs3Lo2FQoDxWNUiBhaP4eRgwNkI+dAjVOA/kUrIDwf3CG8NfNOE0eiFotSuo+rBiq8tD9oY4Qzc6YJw99hl1wzpQvD7ef2M8QgnOGJfJw+EltQc+oX2yn907QB22WZcvlUpd143dqQu+8pCJZuGE4xCuPXJqqcs5sNpsI93Rmzym1k4Npk+oD1SH3/a3LOK/JpUBpWfqNySxWzCfNCUITuDG5dtuphrUJ1myeIE9bIsPiKrfqTai5WZxbhtNphYx6GEIHihyGFTI69lje/rxajdh0s0msZ0zYxyPLhYCb1CyHm9Qsd2H37Y3lugVwL9kNh8Ot8cha6fUNQ8nuXi5z9/ExsAO4zQrb/ev1yrCB7lGyQzgYDGuxq1toDN/JGvN+HyWNHKB7zEoK+PX11e12G431erGYzwmytAWU56fkMHY5JJnDRR2eZji3AwtIcrEV8Cojat/BdQ7XOwGV1e1hDjGGjXbdArm8uJZtCH5MbcctVX8A1WpqumJHwckAAAAASUVORK5CYII=");
+  background-size: 28px 28px;
+  animation: image-loading-rotate 1s linear infinite !important;
+}
+
+.imt-image-status span {
+  color: var(--bg-2, #fff) !important;
+  font-size: 14px !important;
+  line-height: 14px !important;
+  font-weight: 500 !important;
+  font-family: "PingFang SC", Arial, sans-serif !important;
+}
+
+@keyframes image-loading-rotate {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+</style></head>
+
+<body class="sidebar-mini layout-fixed sidebar-collapse" style="height: auto;">
+    <div class="wrapper">
+        <!-- 上方的 Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light shadow  sticky-top">
+            <ul class="nav navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="https://aais5.nkust.edu.tw/selcrs_std/#" id="hidemenu"><i class="fas fa-bars"></i></a>
+                </li>
+                <li class="nav-item" style="white-space:nowrap">
+                    <span class="nav-link btn btn-outline-success ">114 / 1 </span>
+                </li>
+                <li class="nav-item">
+                </li>
+            </ul>
+            <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item">
+                    ﻿    </li><li class="nav-item" style=" white-space:nowrap">
+        <span class="nav-link btn btn-outline-info "><label class="badge badge-info">使用者</label> (課表工程系)</span>
+    </li>
+                
+                <li class="nav-item mx-1 mt-1">
+                    <a href="https://aais5.nkust.edu.tw/selcrs_std/Login/Logout" id="btnLogout" role="button" class="btn btn-primary fas fa-sign-out-alt">SIGN OUT</a>
+                </li>
+            </ul>
+        </nav>
+        <!-- ./上方的 Navbar -->
+        <aside class="main-sidebar sidebar-light-teal elevation-4">
+            <!-- Brand Logo -->
+            <a class="brand-link" href="https://aais5.nkust.edu.tw/selcrs_std/Home/About">              
+                    <div style="display:inline;">
+                        <img class="brand-image img-circle elevation-3 my-3 " src="./NKUST 選課系統 │ 學期選課結果清單 Result of course selection_files/176957439.png" width="40" height="40" alt="Nkust Logo" style="opacity: .8">
+                    </div>
+                    <div style="display:inline;">
+                            <span class="brand-text" style="vertical-align:bottom;top:5px;position:relative;">
+                                選課系統 <br>
+                            <span class="brand-text" style="font-size:14px ;vertical-align:top; font-weight:bold; ">
+                                Course Selection
+                            </span>
+                        </span>
+                    </div>
+            </a>
+            <!-- Sidebar-->
+            <div class="sidebar">
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar nav-child-indent flex-column" data-widget="treeview" role="menu" data-accordion="false" style="width:400px">
+   
+
+
+
+<li class="nav-item has-treeview "><a class="nav-link" href="https://aais5.nkust.edu.tw/selcrs_std/#"> <div class="row">   <div class="bg-success my-2 ml-1"><b class="text-white" style="vertical-align:middle">&nbsp;S3&nbsp;</b></div>   <div>         <p>             <span style="vertical-align:bottom;top:5px;position:relative;">選課結果</span>             <br>             <span style="font-size:8px;vertical-align:top;">Result of course selection</span>        </p>   </div> </div></a><ul class="nav nav-treeview"><li class="nav-item  align-middle">  <a class="nav-link" href="https://aais5.nkust.edu.tw/selcrs_std/StdSelecrs/GetStdPreSelectResult" target="" title="Search for Result of course selection"> <div class="row">     <div class="rounded-circle bg-primary  my-2" style="display:inline;">        <b class="nav-icon" style="font-size:8px;" title="Search for Result of course selection">S31</b>     </div>     <div style="display:inline">        <p>           <span style="vertical-align:bottom;" title="Search for Result of course selection">選課結果查詢</span>          <br>          <span style="font-size:8px;vertical-align:top;" title="Search for Result of course selection">Search for Result of course selection</span>        </p>     </div> </div></a></li><li class="nav-item  align-middle">  <a class="nav-link" href="https://aais5.nkust.edu.tw/selcrs_std/SelectLog/StdSelectLog" target="" title="Course selection history"> <div class="row">     <div class="rounded-circle bg-primary  my-2" style="display:inline;">        <b class="nav-icon" style="font-size:8px;" title="Course selection history">S32</b>     </div>     <div style="display:inline">        <p>           <span style="vertical-align:bottom;" title="Course selection history">選課紀錄</span>          <br>          <span style="font-size:8px;vertical-align:top;" title="Course selection history">Course selection history</span>        </p>     </div> </div></a></li><li class="nav-item  align-middle">  <a class="nav-link" href="https://aais5.nkust.edu.tw/selcrs_std/StdSelecrs/CourseTimeTable" target="" title="Personal Timetable"> <div class="row">     <div class="rounded-circle bg-primary  my-2" style="display:inline;">        <b class="nav-icon" style="font-size:8px;" title="Personal Timetable">S33</b>     </div>     <div style="display:inline">        <p>           <span style="vertical-align:bottom;" title="Personal Timetable">個人課表</span>          <br>          <span style="font-size:8px;vertical-align:top;" title="Personal Timetable">Personal Timetable</span>        </p>     </div> </div></a></li></ul></li>
+
+
+
+<li class="nav-item has-treeview "><a class="nav-link" href="https://aais5.nkust.edu.tw/selcrs_std/#"> <div class="row">   <div class="bg-success my-2 ml-1"><b class="text-white" style="vertical-align:middle">&nbsp;S9&nbsp;</b></div>   <div>         <p>             <span style="vertical-align:bottom;top:5px;position:relative;">選課相關申請</span>             <br>             <span style="font-size:8px;vertical-align:top;">Apply</span>        </p>   </div> </div></a><ul class="nav nav-treeview"><li class="nav-item  align-middle">  <a class="nav-link" href="https://aais5.nkust.edu.tw/selcrs_std/WithdrawApply/ApplyReadmeIndex" target="_blank" title=""> <div class="row">     <div class="rounded-circle bg-primary  my-2" style="display:inline;">        <b class="nav-icon" style="font-size:8px;" title="">S91</b>     </div>     <div style="display:inline">        <p>           <span style="vertical-align:bottom;" title="">學生線上申請使用手冊</span>          <br>          <span style="font-size:8px;vertical-align:top;" title=""></span>        </p>     </div> </div></a></li><li class="nav-item  align-middle">  <a class="nav-link" href="https://aais5.nkust.edu.tw/selcrs_std/PostponeApply" target="" title=""> <div class="row">     <div class="rounded-circle bg-primary  my-2" style="display:inline;">        <b class="nav-icon" style="font-size:8px;" title="">S92</b>     </div>     <div style="display:inline">        <p>           <span style="vertical-align:bottom;" title="">必選課程退選延後申請表</span>          <br>          <span style="font-size:8px;vertical-align:top;" title=""></span>        </p>     </div> </div></a></li><li class="nav-item  align-middle">  <a class="nav-link" href="https://aais5.nkust.edu.tw/selcrs_std/InterSectionApply" target="" title=""> <div class="row">     <div class="rounded-circle bg-primary  my-2" style="display:inline;">        <b class="nav-icon" style="font-size:8px;" title="">S93</b>     </div>     <div style="display:inline">        <p>           <span style="vertical-align:bottom;" title="">跨學制跨部別選課申請表</span>          <br>          <span style="font-size:8px;vertical-align:top;" title=""></span>        </p>     </div> </div></a></li><li class="nav-item  align-middle">  <a class="nav-link" href="https://aais5.nkust.edu.tw/selcrs_std/WithdrawApply/WithdrawApplyIndex" target="" title=""> <div class="row">     <div class="rounded-circle bg-primary  my-2" style="display:inline;">        <b class="nav-icon" style="font-size:8px;" title="">S94</b>     </div>     <div style="display:inline">        <p>           <span style="vertical-align:bottom;" title="">停修課程申請表</span>          <br>          <span style="font-size:8px;vertical-align:top;" title=""></span>        </p>     </div> </div></a></li><li class="nav-item  align-middle">  <a class="nav-link" href="https://aais5.nkust.edu.tw/selcrs_std/WithdrawApply/AddCrsApplyIndex" target="_blank" title=""> <div class="row">     <div class="rounded-circle bg-primary  my-2" style="display:inline;">        <b class="nav-icon" style="font-size:8px;" title="">S95</b>     </div>     <div style="display:inline">        <p>           <span style="vertical-align:bottom;" title="">補救補選線上申請表</span>          <br>          <span style="font-size:8px;vertical-align:top;" title=""></span>        </p>     </div> </div></a></li></ul></li>
+
+
+
+<li class="nav-item"><a class="nav-link" href="https://aais5.nkust.edu.tw/selcrs_std/Home/getCrsTime" target="_self"> <div class="row">    <div class="bg-success my-2 ml-1">        <b class="text-white style=" vertical-align:middle''="">&nbsp;S10&nbsp;</b>    </div>    <div>       <p>             <span style="vertical-align:bottom;top:5px;position:relative;"> 上課時間對照表</span>             <br>             <span style="font-size:8px;vertical-align:top;">Table of class time in each period</span>       </p>    </div> </div></a></li>
+                    </ul>
+                </nav>
+            </div>
+
+        </aside>
+
+        <div class="content-wrapper" style="min-height: 677.667px;">
+            <div class="content-header  py-1 px-3">
+                <div class="container-fluid">
+                    <div class="row  shadow px-2 py-2 ">
+                        <div class="col-sm-11">
+                            <h1 class="text-info font-weight-bold m-0">學期選課結果清單 Result of course selection</h1>
+                        </div><!-- /.col -->
+                        <div class="col-sm-1">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Main Content -->
+            <div class="content">
+                <div class="container-fluid">
+                    <!-- Content Header (Page header) -->
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div id="exTab" class="nav-tabs-custom1">
+                <ul class="nav nav-tabs nav-justified">
+                    <li class="nav-item"><a class="nav-link active" href="https://aais5.nkust.edu.tw/selcrs_std/#tab_selected" data-toggle="tab">已選上課程清單<br>List of Selected Courses</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://aais5.nkust.edu.tw/selcrs_std/#tab_course" data-toggle="tab">專業課程分發結果<br>Professional selective Courses</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://aais5.nkust.edu.tw/selcrs_std/#tab_general" data-toggle="tab">共同教育學院課程分發結果<br>Courses in College of Common Education</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://aais5.nkust.edu.tw/selcrs_std/#tab_sport" data-toggle="tab">體育課程分發結果<br>Physical Education Course</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab_selected">
+                        <div class="card-body">
+                            <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="DataTables_Table_0_length"><label>顯示 <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="custom-select custom-select-sm form-control form-control-sm" autofill-information="overall type: UNKNOWN_TYPE
+html type: HTML_TYPE_UNSPECIFIED
+server type: SERVER_RESPONSE_PENDING
+heuristic type: UNKNOWN_TYPE
+label: 顯示
+parseable name: 0_length
+section: -default
+field signature: 1186608576
+form signature: 17278142251263857641
+form signature in host form: 17278142251263857641
+alternative form signature: 1813787761012691171
+form name: 
+form id: 
+form button titles: 
+field frame token: C6B52FB596825B8E6E6CD5ABD451699A
+form renderer id: 0
+field renderer id: 232
+visible: true
+focusable: true
+field rank: 0
+field rank in signature group: 0
+field rank in host form: 0
+field rank in host form signature group: 0" autofill-prediction="UNKNOWN_TYPE"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> 項結果</label></div></div><div class="col-sm-12 col-md-6"></div></div><div class="row"><div class="col-sm-12"><table class="table table-bordered table-hover table-striped myTable dataTable dtr-inline" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+    <thead>
+        <tr class="bg-danger" role="row"><th class="sorting_disabled" rowspan="1" colspan="1">選課修別<br>Req./Ele.</th><th class="sorting_disabled" rowspan="1" colspan="1">當期課號<br>Course No.</th><th class="sorting_disabled" rowspan="1" colspan="1">課程名稱<br>Course Title</th><th class="sorting_disabled" rowspan="1" colspan="1">學分<br>Credits</th><th class="sorting_disabled" rowspan="1" colspan="1">開課班級<br>Class Name</th><th class="sorting_disabled" rowspan="1" colspan="1">上課時間<br>Time</th><th class="sorting_disabled" rowspan="1" colspan="1">上課教室<br>Location</th><th class="sorting_disabled" rowspan="1" colspan="1">教師<br>Instructor(s)</th><th class="sorting_disabled" rowspan="1" colspan="1">授課語言<br>Language of Instruction</th></tr>
+    </thead>
+    <tbody>
+        
+        
+        
+        
+        
+        
+        
+        
+
+    <tr role="row" class="odd">
+            <td class="text-center dtr-control" tabindex="0">
+                必修<br>Required
+            </td>
+
+            <td class="text-center">
+                3129
+            </td>
+
+            <td>
+                <a href="https://aais5.nkust.edu.tw/selcrs_std/javascript%EF%BC%9Avoid(0);" data-crsno="Xgn2f/gjcr8=" class="myLink">工業配電</a>
+                <br>
+                <small> Power Distribution for Industry</small>
+            </td>
+
+            <td class="text-center">
+                2
+            </td>
+            <td>
+                <span class="badge badge-success">旗津(Cijin)</span>
+                <br>
+                日二技輪機四甲
+            </td>
+            <td>
+                 Fri.3-4
+            </td>
+            <td>
+                旗U304教室
+            </td>
+            <td class="myEllipsis" title="徐喜清">
+                徐喜清
+            </td>
+            <td class="text-center">
+                中文
+            </td>
+        </tr><tr role="row" class="even">
+            <td class="text-center dtr-control" tabindex="0">
+                必修<br>Required
+            </td>
+
+            <td class="text-center">
+                3130
+            </td>
+
+            <td>
+                <a href="https://aais5.nkust.edu.tw/selcrs_std/javascript%EF%BC%9Avoid(0);" data-crsno="1y+jVi6g6C0=" class="myLink">實務專題(二)</a>
+                <br>
+                <small> Special Topics (2)</small>
+            </td>
+
+            <td class="text-center">
+                1
+            </td>
+            <td>
+                <span class="badge badge-success">旗津(Cijin)</span>
+                <br>
+                日二技輪機四甲
+            </td>
+            <td>
+                
+            </td>
+            <td>
+                
+            </td>
+            <td class="myEllipsis" title="孫建中,王怡舜,慈復明,葉金課,陳品志,周明宏,古忠傑,林俊銘">
+                孫建中,王怡舜,慈復明,葉金課,陳品志,周明宏,古忠傑,林俊銘
+            </td>
+            <td class="text-center">
+                中文
+            </td>
+        </tr><tr role="row" class="odd">
+            <td class="text-center dtr-control" tabindex="0">
+                必修<br>Required
+            </td>
+
+            <td class="text-center">
+                3132
+            </td>
+
+            <td>
+                <a href="https://aais5.nkust.edu.tw/selcrs_std/javascript%EF%BC%9Avoid(0);" data-crsno="yGCRnA7n0pc=" class="myLink">輪機檢驗</a>
+                <br>
+                <small> Inspection of Material &amp; Machinery Components for Ship</small>
+            </td>
+
+            <td class="text-center">
+                2
+            </td>
+            <td>
+                <span class="badge badge-success">旗津(Cijin)</span>
+                <br>
+                日二技輪機四甲
+            </td>
+            <td>
+                 Tue.1-2
+            </td>
+            <td>
+                旗U304教室
+            </td>
+            <td class="myEllipsis">
+                林鉍研
+            </td>
+            <td class="text-center">
+                中文
+            </td>
+        </tr><tr role="row" class="even">
+            <td class="text-center dtr-control" tabindex="0">
+                必修<br>Required
+            </td>
+
+            <td class="text-center">
+                3133
+            </td>
+
+            <td>
+                <a href="https://aais5.nkust.edu.tw/selcrs_std/javascript%EF%BC%9Avoid(0);" data-crsno="NMVKPz21Z0k=" class="myLink">造船原理與船體結構</a>
+                <br>
+                <small> Ship Theory and Ship-hull Structures</small>
+            </td>
+
+            <td class="text-center">
+                3
+            </td>
+            <td>
+                <span class="badge badge-success">旗津(Cijin)</span>
+                <br>
+                日二技輪機四甲
+            </td>
+            <td>
+                 Mon.2-4
+            </td>
+            <td>
+                旗U304教室
+            </td>
+            <td class="myEllipsis">
+                林正仁
+            </td>
+            <td class="text-center">
+                中文
+            </td>
+        </tr><tr role="row" class="odd">
+            <td class="text-center dtr-control" tabindex="0">
+                必修<br>Required
+            </td>
+
+            <td class="text-center">
+                3134
+            </td>
+
+            <td>
+                <a href="https://aais5.nkust.edu.tw/selcrs_std/javascript%EF%BC%9Avoid(0);" data-crsno="AfgK0AvkCA0=" class="myLink">輪機故障與排除</a>
+                <br>
+                <small> Marine Engine Troubles and Shooting</small>
+            </td>
+
+            <td class="text-center">
+                2
+            </td>
+            <td>
+                <span class="badge badge-success">旗津(Cijin)</span>
+                <br>
+                日二技輪機四甲
+            </td>
+            <td>
+                 Tue.3-4
+            </td>
+            <td>
+                旗U304教室
+            </td>
+            <td class="myEllipsis">
+                林鉍研
+            </td>
+            <td class="text-center">
+                中文
+            </td>
+        </tr><tr role="row" class="even">
+            <td class="text-center dtr-control" tabindex="0">
+                選修<br>Elective
+            </td>
+
+            <td class="text-center">
+                3194
+            </td>
+
+            <td>
+                <a href="https://aais5.nkust.edu.tw/selcrs_std/javascript%EF%BC%9Avoid(0);" data-crsno="Y0zVIszL4Fk=" class="myLink">離岸風場電氣基礎架構分析</a>
+                <br>
+                <small> Analysis of Electrical Infrastructures for Offshore Wind Farms</small>
+            </td>
+
+            <td class="text-center">
+                3
+            </td>
+            <td>
+                <span class="badge badge-success">旗津(Cijin)</span>
+                <br>
+                日四技輪機四甲
+            </td>
+            <td>
+                 Tue.5-7
+            </td>
+            <td>
+                旗U302教室
+            </td>
+            <td class="myEllipsis">
+                鍾易樺
+            </td>
+            <td class="text-center">
+                中文
+            </td>
+        </tr><tr role="row" class="odd">
+            <td class="text-center dtr-control" tabindex="0">
+                選修<br>Elective
+            </td>
+
+            <td class="text-center">
+                3244
+            </td>
+
+            <td>
+                <a href="https://aais5.nkust.edu.tw/selcrs_std/javascript%EF%BC%9Avoid(0);" data-crsno="5WgkGhiqxc0=" class="myLink">臺灣氣候變異</a>
+                <br>
+                <small> Climate Variability in Taiwan</small>
+            </td>
+
+            <td class="text-center">
+                2
+            </td>
+            <td>
+                <span class="badge badge-success">旗津(Cijin)</span>
+                <br>
+                日四技海資二甲
+            </td>
+            <td>
+                 Mon.7-8
+            </td>
+            <td>
+                旗U604教室
+            </td>
+            <td class="myEllipsis">
+                陳昭銘
+            </td>
+            <td class="text-center">
+                中文
+            </td>
+        </tr><tr role="row" class="even">
+            <td class="text-center dtr-control" tabindex="0">
+                選修<br>Elective
+            </td>
+
+            <td class="text-center">
+                5298
+            </td>
+
+            <td>
+                <a href="https://aais5.nkust.edu.tw/selcrs_std/javascript%EF%BC%9Avoid(0);" data-crsno="6CFxBhgDsNA=" class="myLink">AI資訊決策分析</a>
+                <br>
+                <small> AI informatic decision making</small>
+            </td>
+
+            <td class="text-center">
+                3
+            </td>
+            <td>
+                <span class="badge badge-success">旗津(Cijin)</span>
+                <br>
+                日四技海資四甲
+            </td>
+            <td>
+                 Thu.5-7
+            </td>
+            <td>
+                旗U605教室
+            </td>
+            <td class="myEllipsis">
+                陳震武
+            </td>
+            <td class="text-center">
+                English
+            </td>
+        </tr></tbody>
+    <tfoot>
+        <tr><td colspan="9" class="text-right" rowspan="1"><span class="text-primary">總學分數 Total Credits：<span class="badge badge-danger">18</span> 學分 Credits</span></td></tr>
+    </tfoot>
+</table></div></div><div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">顯示第 1 至 8 項結果，共 8 項</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="DataTables_Table_0_previous"><a href="https://aais5.nkust.edu.tw/selcrs_std/#" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" class="page-link">上一頁</a></li><li class="paginate_button page-item active"><a href="https://aais5.nkust.edu.tw/selcrs_std/#" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item next disabled" id="DataTables_Table_0_next"><a href="https://aais5.nkust.edu.tw/selcrs_std/#" aria-controls="DataTables_Table_0" data-dt-idx="2" tabindex="0" class="page-link">下一頁</a></li></ul></div></div></div></div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab_course">
+                        <div id="accordionN" class="panel-group">
+                                    <div class="panel panel-default m-2">
+                                        <div class="panel-heading" id="headingN1">
+                                            <h5 class="panel-title">
+                                                <button class="text-left btn btn-info col-md-12 active " data-toggle="collapse" data-parent="#accordionN" data-target="#CourseN1" aria-expanded="true" aria-controls="CourseN1">
+                                                    第
+                                                    <span class="badge badge-warning">
+                                                        1
+                                                    </span>
+                                                    次志願選課：專業課程欲選學分數(
+                                                    <span class="badge badge-warning">
+                                                        20
+                                                    </span>
+                                                    )
+                                                    <br>
+                                                    <span class="badge badge-warning">
+                                                        1st
+                                                    </span> Period of course selection：Estimated course credits for professional selective courses
+                                                    (
+                                                    <span class="badge badge-warning">
+                                                        20
+                                                    </span>
+                                                    )
+
+                                                </button>
+                                            </h5>
+                                        </div>
+                                        <div id="CourseN1" class="collapse show" aria-labelledby="headingN1" data-parent="#accordionN">
+                                            <div class="panel-body">
+                                                <div id="DataTables_Table_1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="DataTables_Table_1_length"><label>顯示 <select name="DataTables_Table_1_length" aria-controls="DataTables_Table_1" class="custom-select custom-select-sm form-control form-control-sm" autofill-information="overall type: UNKNOWN_TYPE
+html type: HTML_TYPE_UNSPECIFIED
+server type: SERVER_RESPONSE_PENDING
+heuristic type: UNKNOWN_TYPE
+label: 顯示
+parseable name: 1_length
+section: -default
+field signature: 1647427601
+form signature: 17278142251263857641
+form signature in host form: 17278142251263857641
+alternative form signature: 1813787761012691171
+form name: 
+form id: 
+form button titles: 
+field frame token: C6B52FB596825B8E6E6CD5ABD451699A
+form renderer id: 0
+field renderer id: 234
+visible: false
+focusable: false
+field rank: 1
+field rank in signature group: 0
+field rank in host form: 1
+field rank in host form signature group: 0" autofill-prediction="UNKNOWN_TYPE"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> 項結果</label></div></div><div class="col-sm-12 col-md-6"></div></div><div class="row"><div class="col-sm-12"><table class="table table-bordered table-hover table-striped myTable dataTable no-footer dtr-inline" id="DataTables_Table_1" role="grid" aria-describedby="DataTables_Table_1_info">
+    <thead>
+        <tr class="bg-secondary" role="row"><th class="sorting_disabled" rowspan="1" colspan="1">次別<br>Period</th><th class="sorting_disabled" rowspan="1" colspan="1">志願序<br>Order</th><th class="sorting_disabled" rowspan="1" colspan="1">選課修別<br>Req./Ele.</th><th class="sorting_disabled" rowspan="1" colspan="1">當期課號<br>Course No.</th><th class="sorting_disabled" rowspan="1" colspan="1">課程名稱<br>Course Title</th><th class="sorting_disabled" rowspan="1" colspan="1">學分<br>Credits</th><th class="sorting_disabled" rowspan="1" colspan="1">開課班級<br>Class Name</th><th class="sorting_disabled" rowspan="1" colspan="1">上課時間<br>Time</th><th class="sorting_disabled" rowspan="1" colspan="1">教師<br>Instructor(s)</th><th class="sorting_disabled" rowspan="1" colspan="1">分發結果<br>Admission</th></tr>
+    </thead>
+    <tbody>
+        
+        
+        
+        
+    <tr role="row" class="odd">
+            <td class="text-center dtr-control">
+                1
+            </td>
+            <td class="text-center">
+                1
+            </td>
+            <td class="text-center">
+                選修<br>Elective
+            </td>
+            <td class="text-center">
+                3194
+            </td>
+
+            <td>
+                <a href="https://aais5.nkust.edu.tw/selcrs_std/javascript%EF%BC%9Avoid(0);" data-crsno="Y0zVIszL4Fk=" class="myLink">離岸風場電氣基礎架構分析</a>
+                <br>
+                <small>Analysis of Electrical Infrastructures for Offshore Wind Farms</small>
+            </td>
+            <td class="text-center">
+                3
+            </td>
+            <td>
+                <span class="badge badge-success">旗津(Cijin)</span>
+                <br>
+                日四技輪機四甲
+            </td>
+            <td>
+                 Tue.5-7
+            </td>
+            <td class="myEllipsis" title="鍾易樺">
+                鍾易樺
+            </td>
+            <td class="text-center">
+                分發選上(Placement selected)
+            </td>
+        </tr><tr role="row" class="even">
+            <td class="text-center dtr-control">
+                1
+            </td>
+            <td class="text-center">
+                2
+            </td>
+            <td class="text-center">
+                選修<br>Elective
+            </td>
+            <td class="text-center">
+                3244
+            </td>
+
+            <td>
+                <a href="https://aais5.nkust.edu.tw/selcrs_std/javascript%EF%BC%9Avoid(0);" data-crsno="5WgkGhiqxc0=" class="myLink">臺灣氣候變異</a>
+                <br>
+                <small>Climate Variability in Taiwan</small>
+            </td>
+            <td class="text-center">
+                2
+            </td>
+            <td>
+                <span class="badge badge-success">旗津(Cijin)</span>
+                <br>
+                日四技海資二甲
+            </td>
+            <td>
+                 Mon.7-8
+            </td>
+            <td class="myEllipsis" title="陳昭銘">
+                陳昭銘
+            </td>
+            <td class="text-center">
+                分發選上(Placement selected)
+            </td>
+        </tr><tr role="row" class="odd">
+            <td class="text-center dtr-control">
+                1
+            </td>
+            <td class="text-center">
+                3
+            </td>
+            <td class="text-center">
+                選修<br>Elective
+            </td>
+            <td class="text-center">
+                5298
+            </td>
+
+            <td>
+                <a href="https://aais5.nkust.edu.tw/selcrs_std/javascript%EF%BC%9Avoid(0);" data-crsno="6CFxBhgDsNA=" class="myLink">AI資訊決策分析</a>
+                <br>
+                <small>AI informatic decision making</small>
+            </td>
+            <td class="text-center">
+                3
+            </td>
+            <td>
+                <span class="badge badge-success">旗津(Cijin)</span>
+                <br>
+                日四技海資四甲
+            </td>
+            <td>
+                 Thu.5-7
+            </td>
+            <td class="myEllipsis" title="陳震武">
+                陳震武
+            </td>
+            <td class="text-center">
+                分發選上(Placement selected)
+            </td>
+        </tr><tr role="row" class="even">
+            <td class="text-center dtr-control">
+                1
+            </td>
+            <td class="text-center">
+                4
+            </td>
+            <td class="text-center">
+                必修<br>Required
+            </td>
+            <td class="text-center">
+                3187
+            </td>
+
+            <td>
+                <a href="https://aais5.nkust.edu.tw/selcrs_std/javascript%EF%BC%9Avoid(0);" data-crsno="aM9Fx3TChGA=" class="myLink">船舶電機系統(一)</a>
+                <br>
+                <small>Shipboard Electrical System(I)</small>
+            </td>
+            <td class="text-center">
+                3
+            </td>
+            <td>
+                <span class="badge badge-success">旗津(Cijin)</span>
+                <br>
+                日四技輪機三乙
+            </td>
+            <td>
+                 Thu.2-4
+            </td>
+            <td class="myEllipsis">
+                凃文福
+            </td>
+            <td class="text-center">
+                修課人數已額滿(No vacancy for the courses)
+            </td>
+        </tr></tbody>
+</table></div></div><div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="DataTables_Table_1_info" role="status" aria-live="polite">顯示第 1 至 4 項結果，共 4 項</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_1_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="DataTables_Table_1_previous"><a href="https://aais5.nkust.edu.tw/selcrs_std/#" aria-controls="DataTables_Table_1" data-dt-idx="0" tabindex="0" class="page-link">上一頁</a></li><li class="paginate_button page-item active"><a href="https://aais5.nkust.edu.tw/selcrs_std/#" aria-controls="DataTables_Table_1" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item next disabled" id="DataTables_Table_1_next"><a href="https://aais5.nkust.edu.tw/selcrs_std/#" aria-controls="DataTables_Table_1" data-dt-idx="2" tabindex="0" class="page-link">下一頁</a></li></ul></div></div></div></div>
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                        </div>
+                    </div>
+                    <!-- /.tab-pane -->
+                    <div class="tab-pane" id="tab_general">
+
+                        <div id="accordionG" class="panel-group">
+                                    <div class="panel panel-default m-2">
+                                        <div class="panel-heading" id="headingG1">
+                                            <h5 class="panel-title">
+                                                <button class="text-left btn btn-primary col-md-12 " data-toggle="collapse" data-parent="#accordionG" data-target="#CourseG1" aria-expanded="true" aria-controls="CourseG1">
+                                                    第
+                                                    <span class="badge badge-warning">
+                                                        1
+                                                    </span>
+                                                    次志願選課：共同教育學院課程欲選學分數(
+                                                    <span class="badge badge-warning">
+                                                        20
+                                                    </span>
+                                                    )
+                                                    <br>
+                                                    <span class="badge badge-warning">
+                                                        1st
+                                                    </span> Period of course selection：Estimated course credits for Courses in College of Common Education
+                                                    (
+                                                    <span class="badge badge-warning">
+                                                        20
+                                                    </span>
+                                                    )
+                                                </button>
+                                            </h5>
+                                        </div>
+                                        <div id="CourseG1" class="collapse show" aria-labelledby="headingG1" data-parent="#accordionG">
+                                            <div class="panel-body">
+                                                <div id="DataTables_Table_2_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="DataTables_Table_2_length"><label>顯示 <select name="DataTables_Table_2_length" aria-controls="DataTables_Table_2" class="custom-select custom-select-sm form-control form-control-sm" autofill-information="overall type: UNKNOWN_TYPE
+html type: HTML_TYPE_UNSPECIFIED
+server type: SERVER_RESPONSE_PENDING
+heuristic type: UNKNOWN_TYPE
+label: 顯示
+parseable name: 2_length
+section: -default
+field signature: 2874700025
+form signature: 17278142251263857641
+form signature in host form: 17278142251263857641
+alternative form signature: 1813787761012691171
+form name: 
+form id: 
+form button titles: 
+field frame token: C6B52FB596825B8E6E6CD5ABD451699A
+form renderer id: 0
+field renderer id: 235
+visible: false
+focusable: false
+field rank: 2
+field rank in signature group: 0
+field rank in host form: 2
+field rank in host form signature group: 0" autofill-prediction="UNKNOWN_TYPE"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> 項結果</label></div></div><div class="col-sm-12 col-md-6"></div></div><div class="row"><div class="col-sm-12"><table class="table table-bordered table-hover table-striped myTable dataTable no-footer dtr-inline" id="DataTables_Table_2" role="grid" aria-describedby="DataTables_Table_2_info">
+    <thead>
+        <tr class="bg-secondary" role="row"><th class="sorting_disabled" rowspan="1" colspan="1">次別<br>Period</th><th class="sorting_disabled" rowspan="1" colspan="1">志願序<br>Order</th><th class="sorting_disabled" rowspan="1" colspan="1">選課修別<br>Req./Ele.</th><th class="sorting_disabled" rowspan="1" colspan="1">當期課號<br>Course No.</th><th class="sorting_disabled" rowspan="1" colspan="1">課程名稱<br>Course Title</th><th class="sorting_disabled" rowspan="1" colspan="1">學分<br>Credits</th><th class="sorting_disabled" rowspan="1" colspan="1">開課班級<br>Class Name</th><th class="sorting_disabled" rowspan="1" colspan="1">上課時間<br>Time</th><th class="sorting_disabled" rowspan="1" colspan="1">教師<br>Instructor(s)</th><th class="sorting_disabled" rowspan="1" colspan="1">分發結果<br>Admission</th></tr>
+    </thead>
+    <tbody>
+    <tr class="odd"><td valign="top" colspan="10" class="dataTables_empty"><span class="text-danger">查無資料(No data available in table)</span></td></tr></tbody>
+</table></div></div><div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="DataTables_Table_2_info" role="status" aria-live="polite">顯示第 0 至 0 項結果，共 0 項</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_2_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="DataTables_Table_2_previous"><a href="https://aais5.nkust.edu.tw/selcrs_std/#" aria-controls="DataTables_Table_2" data-dt-idx="0" tabindex="0" class="page-link">上一頁</a></li><li class="paginate_button page-item next disabled" id="DataTables_Table_2_next"><a href="https://aais5.nkust.edu.tw/selcrs_std/#" aria-controls="DataTables_Table_2" data-dt-idx="1" tabindex="0" class="page-link">下一頁</a></li></ul></div></div></div></div>
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                        </div>
+                    </div>
+
+                    <!-- /.tab-pane -->
+                    <div class="tab-pane" id="tab_sport">
+
+                        <div id="accordionS" class="panel-group">
+                                    <div class="panel panel-default m-2">
+                                        <div class="panel-heading" id="headingS1">
+                                            <h5 class="panel-title">
+                                                <button class="text-left btn btn-info col-md-12 " data-toggle="collapse" data-parent="#accordionS" data-target="#CourseS1" aria-expanded="true" aria-controls="CourseS1">
+                                                    第
+                                                    <span class="badge badge-warning">
+                                                        1
+                                                    </span>
+                                                    次志願選課：體育課程(
+                                                    <span class="badge badge-warning">
+                                                        限修一門
+                                                    </span>
+                                                    )
+                                                    <br>
+                                                    <span class="badge badge-warning">
+                                                        1st
+                                                    </span> Period of course selection：The physical education course is restricted by
+                                                    <span class="badge badge-warning">restricted to one course only</span>.
+                                                </button>
+                                            </h5>
+                                        </div>
+                                        <div id="CourseS1" class="collapse show" aria-labelledby="headingS1" data-parent="#accordionS">
+                                            <div class="panel-body">
+                                                <div id="DataTables_Table_3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="DataTables_Table_3_length"><label>顯示 <select name="DataTables_Table_3_length" aria-controls="DataTables_Table_3" class="custom-select custom-select-sm form-control form-control-sm" autofill-information="overall type: UNKNOWN_TYPE
+html type: HTML_TYPE_UNSPECIFIED
+server type: SERVER_RESPONSE_PENDING
+heuristic type: UNKNOWN_TYPE
+label: 顯示
+parseable name: 3_length
+section: -default
+field signature: 760791658
+form signature: 17278142251263857641
+form signature in host form: 17278142251263857641
+alternative form signature: 1813787761012691171
+form name: 
+form id: 
+form button titles: 
+field frame token: C6B52FB596825B8E6E6CD5ABD451699A
+form renderer id: 0
+field renderer id: 236
+visible: false
+focusable: false
+field rank: 3
+field rank in signature group: 0
+field rank in host form: 3
+field rank in host form signature group: 0" autofill-prediction="UNKNOWN_TYPE"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> 項結果</label></div></div><div class="col-sm-12 col-md-6"></div></div><div class="row"><div class="col-sm-12"><table class="table table-bordered table-hover table-striped myTable dataTable no-footer dtr-inline" id="DataTables_Table_3" role="grid" aria-describedby="DataTables_Table_3_info">
+    <thead>
+        <tr class="bg-secondary" role="row"><th class="sorting_disabled" rowspan="1" colspan="1">次別<br>Period</th><th class="sorting_disabled" rowspan="1" colspan="1">志願序<br>Order</th><th class="sorting_disabled" rowspan="1" colspan="1">選課修別<br>Req./Ele.</th><th class="sorting_disabled" rowspan="1" colspan="1">當期課號<br>Course No.</th><th class="sorting_disabled" rowspan="1" colspan="1">課程名稱<br>Course Title</th><th class="sorting_disabled" rowspan="1" colspan="1">學分<br>Credits</th><th class="sorting_disabled" rowspan="1" colspan="1">開課班級<br>Class Name</th><th class="sorting_disabled" rowspan="1" colspan="1">上課時間<br>Time</th><th class="sorting_disabled" rowspan="1" colspan="1">教師<br>Instructor(s)</th><th class="sorting_disabled" rowspan="1" colspan="1">分發結果<br>Admission</th></tr>
+    </thead>
+    <tbody>
+    <tr class="odd"><td valign="top" colspan="10" class="dataTables_empty"><span class="text-danger">查無資料(No data available in table)</span></td></tr></tbody>
+</table></div></div><div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="DataTables_Table_3_info" role="status" aria-live="polite">顯示第 0 至 0 項結果，共 0 項</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_3_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="DataTables_Table_3_previous"><a href="https://aais5.nkust.edu.tw/selcrs_std/#" aria-controls="DataTables_Table_3" data-dt-idx="0" tabindex="0" class="page-link">上一頁</a></li><li class="paginate_button page-item next disabled" id="DataTables_Table_3_next"><a href="https://aais5.nkust.edu.tw/selcrs_std/#" aria-controls="DataTables_Table_3" data-dt-idx="1" tabindex="0" class="page-link">下一頁</a></li></ul></div></div></div></div>
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+        </div>
+    </div>
+    <form class="Num_form">
+        <input name="__RequestVerificationToken" type="hidden" value="CfDJ8HC73zpEaSZCt1AVPjTWyM5f37ZBZUytp88LEbgGjVaE2100-e5f_3-VWXNdO4ci0GE08oF04NQKl3-lVfQidPlUf3lq3DiXkP8-PODR5AxOJUmJT_hm-cPtmD9qGG25MTlW80WkAaoW0N4-FEn57cDf5fg70Y3YVLCaV3QcQI2uA1T3oPph0jM6iiViKpzLrQ">
+    </form>
+</section>
+
+
+
+                </div>
+            </div>
+            <!-- ./Main Content -->
+        </div>
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <a href="https://aais5.nkust.edu.tw/selcrs_std/#" class="text-white">Hide</a>
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+
+        <footer class="main-footer">
+            <strong>© <a href="http://www.nkust.edu.tw/">國立高雄科技大學</a> 版權所有.  由電算與網路中心軟體發展組設計.</strong>
+            <div class="float-right d-noned-sm-inline-block">
+                <span>Powered by</span>
+                <a href="https://adminlte.io/">AdminLTE</a>
+            </div>
+        </footer>
+    <div id="sidebar-overlay"></div></div>
+
+    <!-- ./wrapper -->
+    
+        <script src="./NKUST 選課系統 │ 學期選課結果清單 Result of course selection_files/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="./NKUST 選課系統 │ 學期選課結果清單 Result of course selection_files/jquery-ui.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.3/jquery-ui.min.js"></script>
+        <script src="./NKUST 選課系統 │ 學期選課結果清單 Result of course selection_files/popper.min.js"></script>
+        <script src="./NKUST 選課系統 │ 學期選課結果清單 Result of course selection_files/bootstrap.min.js"></script>
+        <script src="./NKUST 選課系統 │ 學期選課結果清單 Result of course selection_files/adminlte.min.js"></script>
+        <!-- 應該由require.config定義路徑，但是為了TypeScript還不流行就先載入吧 -->
+        <script src="./NKUST 選課系統 │ 學期選課結果清單 Result of course selection_files/sweetalert2.js"></script>
+        <script src="./NKUST 選課系統 │ 學期選課結果清單 Result of course selection_files/toastr.min.js"></script>
+        <script src="./NKUST 選課系統 │ 學期選課結果清單 Result of course selection_files/perfect-scrollbar.min.js"></script>
+        <script src="./NKUST 選課系統 │ 學期選課結果清單 Result of course selection_files/site.js"></script>
+    
+
+    <!-- page script -->
+    
+    <!-- DataTables -->
+    <script src="./NKUST 選課系統 │ 學期選課結果清單 Result of course selection_files/jquery.dataTables.min.js"></script>
+<script src="./NKUST 選課系統 │ 學期選課結果清單 Result of course selection_files/dataTables.bootstrap4.min.js"></script>
+<script src="./NKUST 選課系統 │ 學期選課結果清單 Result of course selection_files/dataTables.responsive.min.js"></script>
+<script src="./NKUST 選課系統 │ 學期選課結果清單 Result of course selection_files/responsive.bootstrap4.min.js"></script>
+<script src="./NKUST 選課系統 │ 學期選課結果清單 Result of course selection_files/dataTables.select.min.js"></script>
+<script src="./NKUST 選課系統 │ 學期選課結果清單 Result of course selection_files/dataTables.buttons.js"></script>
+<script src="./NKUST 選課系統 │ 學期選課結果清單 Result of course selection_files/buttons.bootstrap4.min.js"></script>
+<script src="./NKUST 選課系統 │ 學期選課結果清單 Result of course selection_files/buttons.html5.js"></script>
+<script src="./NKUST 選課系統 │ 學期選課結果清單 Result of course selection_files/buttons.print.js"></script>
+
+<script src="./NKUST 選課系統 │ 學期選課結果清單 Result of course selection_files/jszip.min.js"></script>
+<script src="./NKUST 選課系統 │ 學期選課結果清單 Result of course selection_files/pdfmake.min.js"></script>
+<script src="./NKUST 選課系統 │ 學期選課結果清單 Result of course selection_files/vfs_fonts.js"></script>
+<script src="./NKUST 選課系統 │ 學期選課結果清單 Result of course selection_files/dataTables.keyTable.min.js"></script>
+
+
+    <!-- page script -->
+    <script>
+        $(function () {
+            $('.myEllipsis').mousemove(function () {
+                $(this).attr("title", this.innerText);
+            });
+            $(".myTable").DataTable({
+                "responsive": true,
+                "autoWidth":false,
+                "language": {
+                    "url": "/selcrs_std/lib/Chinese-traditional.json"
+                    , "emptyTable": "<span class='text-danger'>查無資料(No data available in table)</span>"
+
+                },
+                "searching": false,
+                "LengthChange": false,
+                "ordering":false,
+
+            });
+
+            $('.myTable').on('click', '.myLink', function (e) {
+    e.preventDefault();
+    //var $tr = $(this).closest('tr');
+    var token_num = $('input[name="__RequestVerificationToken"]', '.Num_form').val();
+    var form = $("<form method='post'></form>");
+    form.attr("action", "/selcrs_std/Course/getEncryptCourseDetail");
+    form.attr('target', '_blank');
+    form.append( $("<input type='hidden' name='__RequestVerificationToken'>").val(token_num));
+    form.append( $("<input type='hidden' name='ShowModal'>").val("N"));
+    form.append($("<input type='hidden' name='SelectCode'>").val($(this).data("crsno")));
+    //form.append(input1);
+    //form.append(input2);
+    //form.append(input3);
+    $("body").append($(form));
+    //alert("1");
+    form.submit();
+});
+        });
+
+    </script>
+
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="./NKUST 選課系統 │ 學期選課結果清單 Result of course selection_files/js.js"></script>
+	<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-8ZGQ4441W1"></script>
+    <script>
+    //Google Analytics
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8ZGQ4441W1');
+     // end Google Analytics
+        //顯示時間
+        var _NowDate = new Date("2019/08/01");
+        var fgFirstLoad = true;
+        function ShowTime() {
+
+            var m = _NowDate.getMonth()+1;
+            var d = _NowDate.getDate();
+            var h = _NowDate.getHours();
+            var mi = _NowDate.getMinutes();
+            var s = _NowDate.getSeconds();
+            $("#ShowTime").text(m + '月' + d + '日 ' + h + '時' + mi + '分' + s + '秒');
+            //if (s == 0) {
+
+             //    _NowDate.setTime(_NowDate.getTime() + 10000);
+             //   setTimeout('ShowTime()', 10000);
+          //  }
+            // else
+            {
+
+                 _NowDate.setTime(_NowDate.getTime() + 10000);
+               // setTimeout('ShowTime()', 10000);
+            }
+        }
+        $(document).ready(function () {
+            $('#hidemenu').click(function () {
+                var _hidemenu = true;
+                if (window.localStorage.getItem("hidemenu")) {
+                    _hidemenu = (window.localStorage.getItem("hidemenu") == 'true');
+                }
+                if (fgFirstLoad) { // 初次載入
+                    fgFirstLoad = false;
+                    return _hidemenu;
+                }
+                window.localStorage.setItem("hidemenu", !_hidemenu);
+            });
+
+            $('#hidemenu').trigger("click");
+        });
+
+    </script>
+    
+
+
+</body></html>
