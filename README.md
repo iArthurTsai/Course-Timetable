@@ -1,4 +1,5 @@
 # Course-Timetable
+[NKUST 選課系統 │ 選課系統使用說明](https://iarthurtsai.github.io/Course-Timetable/NKUST%20選課系統%20│%20選課系統使用說明_Instructions%20for%20the%20course%20selection%20system.html)  
 [NKUST 選課系統 │ 選課清單](https://iarthurtsai.github.io/Course-Timetable/NKUST%20選課系統%20│%20選課清單_Selection%20List.html)  
 [NKUST 選課系統 │ 學期選課結果清單](https://iarthurtsai.github.io/Course-Timetable/NKUST%20選課系統%20│%20學期選課結果清單%20Result%20of%20course%20selection.html)  
 [NKUST 選課系統 │ 個人課表](https://iarthurtsai.github.io/Course-Timetable/NKUST%20選課系統%20│%20個人課表_br__Personal%20Timetable.html)  
